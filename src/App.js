@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Counter from './components/Counter';
 
 class App extends Component {
   state = {
@@ -52,7 +51,6 @@ class App extends Component {
         >
           Counter cannot be less than {counter}
         </h1>}
-        {/*<Counter />*/}
       </div>
     );
   }

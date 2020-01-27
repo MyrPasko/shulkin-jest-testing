@@ -59,88 +59,88 @@ test('renders without error', () => {
   expect(appComponent.length).toBe(1);
 });
 
-test('renders counter display', () => {
-  const wrapper = setup();
-  const counterDisplay = findByTestAttr(wrapper, 'counter-display');
-
-  expect(counterDisplay.length).toBe(1);
-});
-
-test('renders increment button', () => {
-  const wrapper = setup();
-  const button = findByTestAttr(wrapper, 'increment-button');
-
-  expect(button.length).toBe(1);
-});
-
-test('renders decrement button', () => {
-  const wrapper = setup();
-  const button = findByTestAttr(wrapper, 'decrement-button');
-
-  expect(button.length).toBe(1);
-});
-
-test('counter starts at 0', () => {
-  const wrapper = setup();
-  const initialCounterState = wrapper.state('counter');
-
-  expect(initialCounterState).toBe(0);
-});
-
-test('showError starts at false', () => {
-  const wrapper = setup();
-  const initialCounterState = wrapper.state('showError');
-
-  expect(initialCounterState).toBe(false);
-});
-
-test('clicking button increments the counter display', () => {
-  const { counterDisplay, counter } = getButtonSetupOptions('increment-button', 7);
-
-  expect(counterDisplay.text()).toContain(counter + 1);
-});
-
-test('clicking increment button set "showError" to false', () => {
-  const { wrapper } = getButtonSetupOptions('increment-button', 2);
-
-  expect(wrapper.state().showError).toBe(false);
-});
-
-test('clicking decrement button with "counter" > 0 is decrementing the counter display', () => {
-  const {
-    counterDisplay,
-    wrapper,
-    counter,
-  } = getButtonSetupOptions('decrement-button', 1);
-
-  expect(counterDisplay.text()).toContain(counter - 1);
-  expect(wrapper.state().showError).toBe(false);
-
-});
-
-test('clicking decrement button with "counter === 0" do not decrement counter', () => {
-  const {
-    counterDisplay,
-    counter,
-  } = getButtonSetupOptions('decrement-button', 0);
-
-  expect(counterDisplay.text()).toContain(counter);
-});
-
-test('clicking decrement button with "counter === 0" set "showError" to true', () => {
-  const { wrapper } = getButtonSetupOptions('decrement-button', 0);
-
-  expect(wrapper.state().showError).toBe(true);
-});
-
-test('renders error message', () => {
-  const counter = 0;
-  const showError = true;
-  const wrapper = setup(null, { counter, showError });
-  const button = findByTestAttr(wrapper, 'error-message');
-
-  expect(button.length).toBe(1);
-});
+// test('renders counter display', () => {
+//   const wrapper = setup();
+//   const counterDisplay = findByTestAttr(wrapper, 'counter-display');
+//
+//   expect(counterDisplay.length).toBe(1);
+// });
+//
+// test('renders increment button', () => {
+//   const wrapper = setup();
+//   const button = findByTestAttr(wrapper, 'increment-button');
+//
+//   expect(button.length).toBe(1);
+// });
+//
+// test('renders decrement button', () => {
+//   const wrapper = setup();
+//   const button = findByTestAttr(wrapper, 'decrement-button');
+//
+//   expect(button.length).toBe(1);
+// });
+//
+// test('counter starts at 0', () => {
+//   const wrapper = setup();
+//   const initialCounterState = wrapper.state('counter');
+//
+//   expect(initialCounterState).toBe(0);
+// });
+//
+// test('showError starts at false', () => {
+//   const wrapper = setup();
+//   const initialCounterState = wrapper.state('showError');
+//
+//   expect(initialCounterState).toBe(false);
+// });
+//
+// test('clicking button increments the counter display', () => {
+//   const { counterDisplay, counter } = getButtonSetupOptions('increment-button', 7);
+//
+//   expect(counterDisplay.text()).toContain(counter + 1);
+// });
+//
+// test('clicking increment button set "showError" to false', () => {
+//   const { wrapper } = getButtonSetupOptions('increment-button', 2);
+//
+//   expect(wrapper.state().showError).toBe(false);
+// });
+//
+// test('clicking decrement button with "counter" > 0 is decrementing the counter display', () => {
+//   const {
+//     counterDisplay,
+//     wrapper,
+//     counter,
+//   } = getButtonSetupOptions('decrement-button', 1);
+//
+//   expect(counterDisplay.text()).toContain(counter - 1);
+//   expect(wrapper.state().showError).toBe(false);
+//
+// });
+//
+// test('clicking decrement button with "counter === 0" do not decrement counter', () => {
+//   const {
+//     counterDisplay,
+//     counter,
+//   } = getButtonSetupOptions('decrement-button', 0);
+//
+//   expect(counterDisplay.text()).toContain(counter);
+// });
+//
+// test('clicking decrement button with "counter === 0" set "showError" to true', () => {
+//   const { wrapper } = getButtonSetupOptions('decrement-button', 0);
+//
+//   expect(wrapper.state().showError).toBe(true);
+// });
+//
+// test('renders error message', () => {
+//   const counter = 0;
+//   const showError = true;
+//   const wrapper = setup(null, { counter, showError });
+//   const button = findByTestAttr(wrapper, 'error-message');
+//
+//   expect(button.length).toBe(1);
+// });
 
 // test('renders without crashing', () => {
 //     const wrapper = shallow(<App />);
