@@ -47,7 +47,7 @@ class App extends Component {
         </button>
         {counter === 0 && showError && <h1
           data-test="error-message"
-          style={{color: 'red'}}
+          style={{ color: 'red' }}
         >
           Counter cannot be less than {counter}
         </h1>}

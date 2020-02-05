@@ -1,3 +1,4 @@
+import checkPropTypes from 'check-prop-types';
 
 /**
  * Return node(s) with the given data-test attribute.
@@ -7,5 +8,17 @@
  * @returns {ShallowWrapper}
  * */
 export const findByTestAttribute = (wrapper, attrVal) => {
-    return wrapper.find(`[data-test='${attrVal}']`)
+  return wrapper.find(`[data-test='${attrVal}']`)
+};
+
+export const checkProps = (component, confirmingProps) => {
+  const propError = checkPropTypes(
+    component.propTypes,
+    confirmingProps,
+    confirmingProps,
+    'prop',
+    component.name,
+  );
+
+  expect(propError).toBeUndefined();
 };
