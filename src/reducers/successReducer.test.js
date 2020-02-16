@@ -4,7 +4,7 @@ import { actionTypes } from '../actions';
 test(`should return default initial state of "false" when no action passed`, () => {
   const newState = successReducer(undefined, {});
 
-  expect(newState).toBe(false);
+  expect(newState).toEqual({ success: false });
 });
 
 test(`should return state of "true" upon receiving an action of type "CORRECT_GUESS"`, () => {
@@ -12,5 +12,5 @@ test(`should return state of "true" upon receiving an action of type "CORRECT_GU
     type: actionTypes.CORRECT_GUESS,
   });
 
-  expect(newState).toBe(true);
+  expect(newState).toEqual({ success: true });
 });
