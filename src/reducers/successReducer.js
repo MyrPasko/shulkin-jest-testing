@@ -1,19 +1,12 @@
 import { actionTypes } from '../actions';
 
-const initialState = {
-    success: false,
-};
+const initialState = false;
 
 export default (state = initialState, action) => {
-    switch (action.type) {
-        case (actionTypes.CORRECT_GUESS): {
-            return {
-                ...state,
-                success: true
-            };
-        }
-        default: {
-            return state;
-        }
-    }
+  switch (action.type) {
+    case (actionTypes.CORRECT_GUESS):
+      return true;
+    default:
+      return state;
+  }
 }
