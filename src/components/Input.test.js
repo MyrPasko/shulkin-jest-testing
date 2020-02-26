@@ -6,10 +6,9 @@ import { findByTestAttribute, storeFactory } from '../../test/testUtils';
 
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
-  // const wrapper = shallow(<Input store={store} />).dive().dive();
-  const element = shallow(<Input store={store} />).dive().dive();
+  const wrapper = shallow(<Input store={store} />).dive().dive();
 
-  return element;
+  return wrapper;
 };
 
 describe(`render`, () => {
@@ -72,6 +71,27 @@ describe(`render`, () => {
 
 describe(`update state`, () => {
 
+});
+
+describe(`redux props`, () => {
+  /** This is test to check, if Input element connected to redux has
+   * 'success' piece of global store equals to correct hardcoded value */
+  test(`has success piece of state as props`, () => {
+    const success = true;
+    const wrapper = setup({ success });
+
+    const successProps = wrapper.instance().props.success;
+
+    expect(successProps).toBe(success);
+  });
+
+  /** Is 'guessWord' action creator exists as a prop of 'Input' container */
+  test(`'guessWord' action creator is a function prop`, () => {
+    const wrapper = setup();
+    const guessWordProp = wrapper.instance().props.guessWord;
+
+    expect(guessWordProp).toBeInstanceOf(Function);
+  });
 });
 
 
