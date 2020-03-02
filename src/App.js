@@ -6,28 +6,30 @@ import { connect } from 'react-redux';
 import { getSecretWord } from './actions';
 import Input from './components/Input';
 
-class App extends Component {
-  state = {
-    counter: 0,
-    showError: false,
-  };
+export class UnconnectedApp extends Component {
+  componentDidMount() {
+    this.props.getSecretWord();
+  }
 
   render() {
+    const { success, guessedWords } = this.props;
+
     return (
       <div data-test="component-app" className="container">
         <h1>JOJO!!!!!</h1>
-        <Congrats success={this.props.success} />
-        <Input/>
-        <GuessedWords guessedWords={this.props.guessedWords} />
+        <div>The secret word is {this.props.secretWord}</div>
+        <Congrats success={success} />
+        <Input />
+        <GuessedWords guessedWords={guessedWords} />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-    const { success, guessedWords, secretWord } = state;
+const mapStateToProps = state => {
+  const { success, guessedWords, secretWord } = state;
 
   return { success, guessedWords, secretWord };
 };
 
-export default connect(mapStateToProps, { getSecretWord })(App);
+export default connect(mapStateToProps, { getSecretWord })(UnconnectedApp);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import Input from './Input';
+import Input, { UnconnectedInput } from './Input';
 import { findByTestAttribute, storeFactory } from '../../test/testUtils';
 
 const setup = (initialState = {}) => {
@@ -91,6 +91,48 @@ describe(`redux props`, () => {
     const guessWordProp = wrapper.instance().props.guessWord;
 
     expect(guessWordProp).toBeInstanceOf(Function);
+  });
+});
+
+describe(`'guessWord' action creator call`, () => {
+  let guessWordMock;
+  let wrapper;
+  const guessedWord = 'train';
+
+  beforeEach(() => {
+    guessWordMock = jest.fn();
+    const props = {
+      guessWord: guessWordMock,
+      success: false,
+    };
+    wrapper = shallow(<UnconnectedInput {...props} />);
+    const submitButton = findByTestAttribute(wrapper, 'submit-button');
+
+    // add value to input box
+    wrapper.instance().inputBox.current = { value: guessedWord };
+
+    // Follow this order of simulating and getting of mock calls, cause of errors ))
+    submitButton.simulate('click', {
+      preventDefault() {
+      }
+    });
+
+  });
+
+  test(`should call 'guessWord' when the Submit button is click`, () => {
+    const guessWordMockCount = guessWordMock.mock.calls.length;
+
+    expect(guessWordMockCount).toBe(1);
+  });
+
+  test(`should call 'guessWord' wit input value as argument`, () => {
+    const guessWordArg = guessWordMock.mock.calls[0][0];
+
+    expect(guessWordArg).toBe(guessedWord);
+  });
+
+  test(`should input box clears on submit`, () => {
+    expect(wrapper.instance().inputBox.current.value).toBe('');
   });
 });
 
